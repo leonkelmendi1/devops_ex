@@ -22,58 +22,19 @@
 	# Tester si une variable GET 'action' est précisée dans l'URL index.php?action=...
 	$action = (isset($_GET['action'])) ? htmlentities($_GET['action']) : 'default';
 	# Quelle action est demandée ?
-/**
- * @return BooksController
- */
-function extracted()
-{
-    require_once('controllers/BooksController.php');
-    $controller = new BooksController();
-    return $controller;
-}
-
-/**
- * @return GenesisController
- */
-function extracted1()
-{
-    require_once('controllers/GenesisController.php');
-    $controller = new GenesisController();
-    return $controller;
-}
-
-/**
- * @return ContactController
- */
-function extracted2()
-{
-    require_once('controllers/ContactController.php');
-    $controller = new ContactController();
-    return $controller;
-}
-
-/**
- * @return HomeController
- */
-function extracted3()
-{
-    require_once('controllers/HomeController.php');
-    $controller = new HomeController();
-    return $controller;
-}
 
 switch($action) {
 		case 'genesis':
-			$controller = extracted1();
+			$controller = ControllerManager::extracted1();
             break;
 		case 'books':
-			$controller = extracted();
+			$controller = ControllerManager::extracted();
             break;
 		case 'contact':
-			$controller = extracted2();
+			$controller = ControllerManager::extracted2();
             break;
 		default: # Par défaut, le contrôleur de l'accueil est sélectionné
-			$controller = extracted3();
+			$controller = ControllerManager::extracted3();
             break;
 	}
 	# Exécution du contrôleur correspondant à l'action demandée
